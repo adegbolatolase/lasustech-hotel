@@ -382,7 +382,10 @@
 
 .testimonial-carousel .testimonial-item {
     padding: 30px;
+    max-width: 600px;
+    margin: 0 auto; 
 }
+
 
 .testimonial-carousel .owl-nav {
     position: absolute;

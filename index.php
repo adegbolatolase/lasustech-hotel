@@ -90,7 +90,7 @@
                     >Our Rooms</a
                   >
                   <a
-                    href="booking.html"
+                    href="booking.php"
                     class="btn btn-light py-md-3 px-md-5 animated slideInRight"
                     >Book A Room</a
                   >
@@ -146,65 +146,6 @@
         </div>
       </div>
       <!-- Carousel End -->
-
-      <!-- Booking Start -->
-      <div
-        class="container-fluid booking pb-5 wow fadeIn"
-        data-wow-delay="0.1s"
-      >
-        <div class="container">
-          <div class="bg-white shadow" style="padding: 35px">
-            <div class="row g-2">
-              <div class="col-md-10">
-                <div class="row g-2">
-                  <div class="col-md-3">
-                    <div class="date" id="date1" data-target-input="nearest">
-                      <input
-                        type="text"
-                        class="form-control datetimepicker-input"
-                        placeholder="Check in"
-                        data-target="#date1"
-                        data-toggle="datetimepicker"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="date" id="date2" data-target-input="nearest">
-                      <input
-                        type="text"
-                        class="form-control datetimepicker-input"
-                        placeholder="Check out"
-                        data-target="#date2"
-                        data-toggle="datetimepicker"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <select class="form-select">
-                      <option selected>Adult</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <select class="form-select">
-                      <option selected>Child</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <button class="btn btn-primary w-100">Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Booking End -->
 
       <!-- About Start -->
       <div class="container-xxl py-5">
@@ -340,7 +281,9 @@
                     serene retreat with all the comforts of home.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.html"
+                    <a
+                      class="btn btn-sm btn-primary rounded py-2 px-4"
+                      href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -383,7 +326,9 @@
                     atmosphere, ideal for relaxation and productivity.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.html"
+                    <a
+                      class="btn btn-sm btn-primary rounded py-2 px-4"
+                      href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -426,7 +371,9 @@
                     offers a serene escape with sophisticated amenities.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.html"
+                    <a
+                      class="btn btn-sm btn-primary rounded py-2 px-4"
+                      href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -436,11 +383,11 @@
           </div>
         </div>
         <div class="container text-center my-5">
-            <a class="btn btn-primary" href="room.html">Explore More</a>
-          </div>
+          <a class="btn btn-primary" href="room.html">Explore More</a>
+        </div>
       </div>
       <!-- Room End -->
-              
+
       <!-- Service Start -->
       <div class="container-xxl py-5">
         <div class="container">
@@ -556,63 +503,40 @@
       <!-- Service End -->
 
       <!-- Testimonial Start -->
-      <div
-        class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn"
-        data-wow-delay="0.1s"
-      >
+      <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
         <div class="container">
-          <div class="owl-carousel testimonial-carousel py-5">
-            <div
-              class="testimonial-item position-relative bg-white rounded overflow-hidden"
-            >
-              <p>
-                A truly luxurious experience from start to finish. The attention
-                to detail in every aspect of our stay was exceptional.
-              </p>
-              <div class="d-flex align-items-center">
-                <div>
-                  <h6 class="fw-bold mb-1">Barbara Johnson</h6>
-                </div>
-              </div>
-              <i
-                class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"
-              ></i>
+            <div class="owl-carousel testimonial-carousel py-5">
+                <?php
+                include('connectDB.php');
+
+                $viewQuery = "SELECT * FROM UserReviews ORDER BY id DESC";
+                $result = mysqli_query($dbConnection, $viewQuery);
+
+                if ($result) {
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="testimonial-item position-relative bg-white rounded overflow-hidden">';
+                            echo '<p>' . htmlspecialchars($row["review"]) . '</p>';
+                            echo '<div class="d-flex align-items-center">';
+                            echo '<div>';
+                            echo '<h6 class="fw-bold mb-1">' . htmlspecialchars($row["name"]) . '</h6>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '<i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p style="text-align: center; font-size: 2rem;">No reviews yet</p>';
+                    }
+                } else {
+                    echo "Error executing SQL query: " . mysqli_error($dbConnection);
+                }
+
+                mysqli_close($dbConnection);
+                ?>
             </div>
-            <div
-              class="testimonial-item position-relative bg-white rounded overflow-hidden"
-            >
-              <p>
-                The food at the restaurant was exquisite, and the staff went
-                above and beyond to make our dining experience memorable.
-              </p>
-              <div class="d-flex align-items-center">
-                <div>
-                  <h6 class="fw-bold mb-1">Peter Nwosu</h6>
-                </div>
-              </div>
-              <i
-                class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"
-              ></i>
-            </div>
-            <div
-              class="testimonial-item position-relative bg-white rounded overflow-hidden"
-            >
-              <p>
-                The spa treatments were rejuvenating, and the atmosphere was so
-                relaxing. A perfect retreat for unwinding and pampering.
-              </p>
-              <div class="d-flex align-items-center">
-                <div>
-                  <h6 class="fw-bold mb-1">Ahmed Hassan</h6>
-                </div>
-              </div>
-              <i
-                class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"
-              ></i>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
       <!-- Testimonial End -->
 
       <!-- Centered Button Container -->
@@ -628,7 +552,7 @@
         class="container-xxl review-form-container d-none"
       >
         <div class="container">
-          <form id="reviewForm">
+          <form id="reviewForm" action="send-reviews.php" method="POST">
             <div class="mb-3">
               <label for="reviewText" class="form-label">Your Review</label>
               <textarea
@@ -636,6 +560,7 @@
                 id="reviewText"
                 rows="3"
                 required
+                name="review"
               ></textarea>
             </div>
             <div class="mb-3">
@@ -645,6 +570,7 @@
                 class="form-control"
                 id="reviewerName"
                 required
+                name="name"
               />
             </div>
             <button type="submit" class="btn btn-primary">Submit Review</button>
@@ -652,43 +578,7 @@
         </div>
       </div>
 
-      <!-- Thank You Modal -->
-      <div
-        class="modal fade"
-        id="thankYouModal"
-        tabindex="-1"
-        aria-labelledby="thankYouModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="thankYouModalLabel">
-                Thank You for Your Review!
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              Your review has been submitted successfully.
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
       <!-- Newsletter Start -->
       <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="row justify-content-center">
@@ -699,8 +589,13 @@
                   Subscribe To Our
                   <span class="text-primary text-uppercase">Newsletter</span>
                 </h4>
-                <div class="position-relative mx-auto" style="max-width: 400px">
+                <form
+                  id="newsletterForm"
+                  class="position-relative mx-auto"
+                  style="max-width: 400px"
+                >
                   <input
+                    name="email"
                     id="emailInput"
                     class="form-control w-100 py-3 ps-4 pe-5"
                     type="email"
@@ -708,20 +603,24 @@
                     required
                   />
                   <button
-                    id="submitNewsletterBtn"
-                    type="button"
+                    type="submit"
                     class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
                   >
                     Submit
                   </button>
-                </div>
+                </form>
                 <div
                   id="newsletterMsg"
                   class="mt-3"
-                  style="display: none; color: green"
+                  style="color: green; display: none"
                 >
                   Thank you for subscribing!
                 </div>
+                <div
+                  id="newsletterError"
+                  class="mt-3"
+                  style="color: red; display: none"
+                ></div>
               </div>
             </div>
           </div>

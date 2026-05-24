@@ -69,7 +69,7 @@
         smartSpeed: 1000,
         margin: 25,
         dots: false,
-        loop: true,
+        loop: false,
         nav: true,
         navText: [
             '<i class="bi bi-arrow-left"></i>',
@@ -80,7 +80,7 @@
                 items: 1
             },
             768: {
-                items: 2
+                items: 1
             }
         }
     });
@@ -88,25 +88,6 @@
     // Toggle review form visibility
     $('#toggleReviewFormBtn').click(function () {
         $('#reviewFormContainer').toggleClass('d-none');
-    });
-
-    // Handle review form submission
-    $('#reviewForm').submit(function (event) {
-        event.preventDefault();
-        var reviewText = $('#reviewText').val();
-        var reviewerName = $('#reviewerName').val();
-
-        // Simulating form submission (replace with actual submission logic)
-        console.log('Review Text:', reviewText);
-        console.log('Reviewer Name:', reviewerName);
-
-        // Show thank you modal after form submission
-        $('#thankYouModal').modal('show');
-
-        // Optionally, reset form and hide after submission
-        $('#reviewText').val('');
-        $('#reviewerName').val('');
-        $('#reviewFormContainer').addClass('d-none');
     });
 
     // Handle newsletter form submission
@@ -199,3 +180,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     highlightActiveNavLink();
 });
 
+function redirectToIndex() {
+    window.location.href = "/";
+}

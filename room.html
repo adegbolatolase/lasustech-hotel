@@ -71,74 +71,15 @@
       >
         <div class="container-fluid page-header-inner py-5">
           <div class="container text-center pb-5">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">
+            <h2 class="display-3 text-white mb-3 animated slideInDown">
               Rooms
-            </h1>
+            </h2>
           </div>
         </div>
       </div>
       <!-- Page Header End -->
 
-      <!-- Booking Start -->
-      <div
-        class="container-fluid booking pb-5 wow fadeIn"
-        data-wow-delay="0.1s"
-      >
-        <div class="container">
-          <div class="bg-white shadow" style="padding: 35px">
-            <div class="row g-2">
-              <div class="col-md-10">
-                <div class="row g-2">
-                  <div class="col-md-3">
-                    <div class="date" id="date1" data-target-input="nearest">
-                      <input
-                        type="text"
-                        class="form-control datetimepicker-input"
-                        placeholder="Check in"
-                        data-target="#date1"
-                        data-toggle="datetimepicker"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="date" id="date2" data-target-input="nearest">
-                      <input
-                        type="text"
-                        class="form-control datetimepicker-input"
-                        placeholder="Check out"
-                        data-target="#date2"
-                        data-toggle="datetimepicker"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <select class="form-select">
-                      <option selected>Adult</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <select class="form-select">
-                      <option selected>Child</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <button class="btn btn-primary w-100">Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Booking End -->
-
-      <!-- Room Start -->
+       <!-- Room Start -->
       <div class="container-xxl py-5">
         <div class="container">
           <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -186,7 +127,7 @@
                     serene retreat with all the comforts of home.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#"
+                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -229,7 +170,7 @@
                     atmosphere, ideal for relaxation and productivity.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#"
+                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -272,7 +213,7 @@
                     offers a serene escape with sophisticated amenities.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#"
+                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -314,7 +255,7 @@
                     Our Deluxe Room offers a perfect blend of comfort and style, ideal for both business travelers and leisure guests.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#"
+                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -356,7 +297,7 @@
                     Experience ultimate luxury in our Presidential Suite, featuring exclusive amenities and panoramic views.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#"
+                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -398,7 +339,7 @@
                     Designed for families, our Family Room provides ample space and comfort for a convenient and enjoyable stay.
                   </p>
                   <div class="d-flex justify-content-between">
-                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="#"
+                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="booking.php"
                       >Book Now</a
                     >
                   </div>
@@ -417,28 +358,47 @@
             <div class="border rounded text-center p-1">
               <div class="bg-white rounded text-center p-5">
                 <h4 class="mb-4">
-                  Subscribe Our
+                  Subscribe To Our
                   <span class="text-primary text-uppercase">Newsletter</span>
                 </h4>
-                <div class="position-relative mx-auto" style="max-width: 400px">
+                <form
+                  id="newsletterForm"
+                  class="position-relative mx-auto"
+                  style="max-width: 400px"
+                >
                   <input
+                    name="email"
+                    id="emailInput"
                     class="form-control w-100 py-3 ps-4 pe-5"
-                    type="text"
+                    type="email"
                     placeholder="Enter your email"
+                    required
                   />
                   <button
-                    type="button"
+                    type="submit"
                     class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
                   >
                     Submit
                   </button>
+                </form>
+                <div
+                  id="newsletterMsg"
+                  class="mt-3"
+                  style="color: green; display: none"
+                >
+                  Thank you for subscribing!
                 </div>
+                <div
+                  id="newsletterError"
+                  class="mt-3"
+                  style="color: red; display: none"
+                ></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Newsletter Start -->
+      <!-- Newsletter End -->
 
       <!-- Footer Start -->
       <div class="footer"></div>
